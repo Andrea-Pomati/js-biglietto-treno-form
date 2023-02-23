@@ -45,72 +45,42 @@
 Milestone 1
 
 - inserire due imput con "type" number
+
 - inserire un bottone
+- fare comparire in console
 
 */
 
 
 
 
-//inizio
+//inizio prezzo km
 
 const prezzoKm = 0.21;
+console.log(prezzoKm)
 
-// km da percorrere
+// km da percorrere attribuiti a id
 
-let kmDaPercorrere = parseInt (prompt  ("Quanti km vuoi percorrere?"))
+let kmDaPercorrere = parseInt(document.getElementById("km-da-percorrere").value)
 
-// età
+// fasciaetà attribuiti a id
 
-let etàPasseggero = parseInt (prompt  ("Quanti anni hai?"))
+let fasciaEta = document.getElementById("fascia-eta").value
 
-// prezzo biglietto
-
-let prezzoBiglietto = prezzoKm * kmDaPercorrere
-
-
-// sconto biglietto under 18 20%
-
-let scontoBiglietto18 = prezzoBiglietto * 0.2
-
-//calcolo degli sconti
-
-const prezzoUnder18 = prezzoBiglietto - scontoBiglietto18
-
-// sconto biglietto over 65 40%
-
-let scontoBiglietto65 = prezzoBiglietto * 0.4
-
-//calcolo degli sconti
+// prezzoover18
+let genera = document.getElementById("genera")
 
 
-const prezzoOver65 = prezzoBiglietto - scontoBiglietto65
+let prezzoOver18 = kmDaPercorrere * prezzoKm
 
 
 
-if (etàPasseggero < 18) {
-
-    prezzoBiglietto = prezzoUnder18.toFixed(2)
-    
-    document.writeln(`Il tuo biglietto costa ${prezzoBiglietto} €`);
 
 
-}
 
 
-else if (etàPasseggero >= 65) {
 
-    prezzoBiglietto = prezzoOver65.toFixed(2)
 
-    document.writeln(`Il tuo biglietto costa ${prezzoBiglietto} €`);
 
-}
-
-else {
-    
-    prezzoBiglietto = prezzoBiglietto.toFixed(2)
-
-    document.writeln(`Il tuo biglietto costa ${prezzoBiglietto} €`);
-}
 
 
