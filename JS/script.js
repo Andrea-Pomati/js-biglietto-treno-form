@@ -51,27 +51,90 @@ Milestone 1
 
 */
 
+// - chiedere e memorizzare numero di km e età dell'utente
+
+let tripKmEl = document.getElementById("tripKm");
+let userAgeEl = document.getElementById("userAge");
+
+
+// prezzo per km 
+let pricePerKm = 0.21;
+
+
+let generateTicketButtonEl = document.getElementById("generateTicketButton");
+
+generateTicketButtonEl.addEventListener('click', function() {
+
+  // - calcoliamo il prezzo base del biglietto (km * 0.21)
+  let baseTicketPrice = tripKmEl.value * pricePerKm;
+
+  // dichiaro la variabile del prezzo finale
+  let finalPrice;
+
+  if(!isNaN(tripKmEl.value) && !isNaN(userAgeEl.value)) {
+
+    let discount;
+
+
+    // ? SE l'età è < 18
+    if(userAgeEl.value < 18) {
+
+      // ° prezzoFinale = prezzoBase - (prezzoBase / 100 * 20)
+      finalPrice = baseTicketPrice - baseTicketPrice / 100 * 20;
+
+      discount = '20%';
+      console.log("prezzo scontato minorenni: " + finalPrice);
+
+    } else if(userAgeEl.value >= 65) { //: ALTRIMENTI SE l'età è > 65
+
+      finalPrice = baseTicketPrice - baseTicketPrice * 0.4;
+
+      discount = "40%";
+      console.log("prezzo scontato over65: " + finalPrice);
+
+    } else { //: ALTRIMENTI 
+
+      finalPrice = baseTicketPrice;
+
+      discount = "nessuno";
+      console.log("prezzo: " + finalPrice);
+      
+    }
+
+
+    // - formatta prezzoFinale con due decimali
+    finalPrice = finalPrice.toFixed(2);
+
+    document.getElementById("ticket").style.display = "block";
+
+    // let ticketKmEl = document.getElementById("ticketKm");
+    document.getElementById("ticketKm").innerHTML = "Km del viaggio: " + tripKmEl.value;
+    document.getElementById("ticketUserAge").innerHTML = "Età dell'utente: " + userAgeEl.value;
+    document.getElementById("ticketDiscount").innerHTML = "Sconto applicato: " + discount;
+
+    document.getElementById("ticketPrice").innerHTML = "Prezzo del biglietto: <strong>€" + finalPrice + "</strong>";
+
+  } else {
+
+    console.log("inserisci un numero in entrambi i campi!");
+    
+  }
+
+  
+
+});
 
 
 
-//inizio prezzo km
 
-const prezzoKm = 0.21;
-console.log(prezzoKm)
+document.getElementById("closeTicket").addEventListener("click", function() {
+  
+  document.getElementById("ticket").style.display = "none";
+  tripKmEl.value = "";
+  userAgeEl.value = "";
 
-// km da percorrere attribuiti a id
+});
 
-let kmDaPercorrere = parseInt(document.getElementById("km-da-percorrere").value)
-
-// fasciaetà attribuiti a id
-
-let fasciaEta = document.getElementById("fascia-eta").value
-
-// prezzoover18
-let genera = document.getElementById("genera")
-
-
-let prezzoOver18 = kmDaPercorrere * prezzoKm
 
 
 
